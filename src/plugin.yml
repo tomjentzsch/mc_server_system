@@ -1,0 +1,27 @@
+name: mc_server_system
+author: dortom
+version: 0.1
+api-version: 1.13
+
+main: de.dortom.main.Main
+
+commands:
+  dienst:
+    usuage: /<command>
+    description: antreten/beenden des Dienstes
+  geben:
+    usuage: /<command>
+    description: testweise 
+  admin:
+    usuage: /<command>
+    description: adminpanel oeffnen
+  money:
+    usuage: /<command>
+    description: money
+  garage:
+    usuage: /<command>
+    description: garage menu
+  gamemode:
+    usuage: /<command>
+    description: wechselt gamemode
+    aliases: gm
