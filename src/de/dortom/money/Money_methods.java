@@ -13,48 +13,48 @@ public class Money_methods {
 
 	public static Double getmoney(UUID uuid) {
 
-		double money = Main.main.money_cfg.getDouble(uuid + ".money");
+		double money = Main.main.money_file_cfg.getDouble(uuid + ".money");
 		return money;
 	}
 
 	public static void setmoney(UUID uuid, double amount) {
 
 		double rounded_amount = Math.round(amount * 100.0D) / 100.0D;
-		Main.main.money_cfg.set(uuid + ".money", rounded_amount);
+		Main.main.money_file_cfg.set(uuid + ".money", rounded_amount);
 		try {
-			Main.main.money_cfg.save(Main.main.money_file);
+			Main.main.money_file_cfg.save(Main.main.money_file);
 		} catch (IOException e) {
 		}
 	}
 
 	public static void addmoney(UUID uuid, double amount) {
 
-		double money = Main.main.money_cfg.getDouble((uuid + ".money"));
+		double money = Main.main.money_file_cfg.getDouble((uuid + ".money"));
 		double rounded_amount = Math.round(amount * 100.0D) / 100.0D;
 		money = money + rounded_amount;
-		Main.main.money_cfg.set(uuid + ".money", money);
+		Main.main.money_file_cfg.set(uuid + ".money", money);
 		try {
-			Main.main.money_cfg.save(Main.main.money_file);
+			Main.main.money_file_cfg.save(Main.main.money_file);
 		} catch (IOException e) {
 		}
 	}
 
 	public static void removemoney(UUID uuid, double amount) {
 
-		double money = Main.main.money_cfg.getDouble(uuid + ".money");
+		double money = Main.main.money_file_cfg.getDouble(uuid + ".money");
 		double rounded_amount = Math.round(amount * 100.0D) / 100.0D;
 		money = money - rounded_amount;
-		Main.main.money_cfg.set(uuid + ".money", money);
+		Main.main.money_file_cfg.set(uuid + ".money", money);
 		try {
-			Main.main.money_cfg.save(Main.main.money_file);
+			Main.main.money_file_cfg.save(Main.main.money_file);
 		} catch (IOException e) {
 		}
 	}
 
 	public static void paymoney(UUID uuid_sender, UUID uuid_target, double amount) {
 
-		double money_target = Main.main.money_cfg.getDouble(uuid_target + ".money");
-		double money_sender = Main.main.money_cfg.getDouble(uuid_sender + ".money");
+		double money_target = Main.main.money_file_cfg.getDouble(uuid_target + ".money");
+		double money_sender = Main.main.money_file_cfg.getDouble(uuid_sender + ".money");
 		double rounded_amount = Math.round(amount * 100.0D) / 100.0D;
 
 		if (rounded_amount > money_sender) {
@@ -68,11 +68,11 @@ public class Money_methods {
 			double money_target_rounded = Math.round(money_target * 100.0D) / 100.0D;
 			double money_sender_rounded = Math.round(money_sender * 100.0D) / 100.0D;
 
-			Main.main.money_cfg.set(uuid_sender + ".money", money_sender_rounded);
-			Main.main.money_cfg.set(uuid_target + ".money", money_target_rounded);
+			Main.main.money_file_cfg.set(uuid_sender + ".money", money_sender_rounded);
+			Main.main.money_file_cfg.set(uuid_target + ".money", money_target_rounded);
 
 			try {
-				Main.main.money_cfg.save(Main.main.money_file);
+				Main.main.money_file_cfg.save(Main.main.money_file);
 			} catch (IOException e) {
 			}
 		} else {
@@ -85,10 +85,10 @@ public class Money_methods {
 
 	public static void createmoney(String uuid, Player p) {
 
-		if (!Main.main.money_cfg.contains(uuid)) {
-			Main.main.money_cfg.set(uuid + ".money", 250);
+		if (!Main.main.money_file_cfg.contains(uuid)) {
+			Main.main.money_file_cfg.set(uuid + ".money", 250);
 			try {
-				Main.main.money_cfg.save(Main.main.money_file);
+				Main.main.money_file_cfg.save(Main.main.money_file);
 			} catch (IOException e) {
 			}
 		} else {

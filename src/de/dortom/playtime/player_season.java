@@ -52,7 +52,7 @@ public class player_season{
 						DecimalFormat f = new DecimalFormat("#0.00");
 
 						double steuern = 0.0;
-						double konto = Main.main.money_cfg.getDouble(p.getUniqueId() + ".money");
+						double konto = Main.main.money_file_cfg.getDouble(p.getUniqueId() + ".money");
 						double zinssatz = 0.0;
 						double zinsen = konto * zinssatz / 100;
 						double neukonto = konto + zinsen - steuern;

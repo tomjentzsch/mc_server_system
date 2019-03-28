@@ -27,7 +27,7 @@ public class Money_CE implements CommandExecutor {
 		Player p = (Player) sender;
 
 		if (args.length == 0) {
-			if (Main.main.money_cfg.contains(p.getUniqueId().toString())) {
+			if (Main.main.money_file_cfg.contains(p.getUniqueId().toString())) {
 				p.sendMessage("aktueller Kontostand: " + Money_methods.getmoney(p.getUniqueId()) + "§l€");
 			} else {
 				p.sendMessage("Du hast noch kein Bankkonto!");
@@ -40,7 +40,7 @@ public class Money_CE implements CommandExecutor {
 				Player another = Bukkit.getServer().getPlayer(args[0]);
 				try {
 					UUID uuid_another = another.getUniqueId();
-					if (Main.main.money_cfg.contains(uuid_another.toString())) {
+					if (Main.main.money_file_cfg.contains(uuid_another.toString())) {
 						p.sendMessage(
 								"aktueller Kontostand von " + (args[0]) + ": " + Money_methods.getmoney(uuid_another));
 					} else {
@@ -60,7 +60,7 @@ public class Money_CE implements CommandExecutor {
 					Player target = Bukkit.getServer().getPlayer(args[1]);
 					try {
 						UUID uuid_target = target.getUniqueId();
-						if (Main.main.money_cfg.contains(uuid_target.toString())) {
+						if (Main.main.money_file_cfg.contains(uuid_target.toString())) {
 							Double amount = Double.valueOf(args[2]);
 							double rounded = Math.round(amount * 100.0D) / 100.0D;
 							Money_methods.setmoney(uuid_target, rounded);
@@ -84,7 +84,7 @@ public class Money_CE implements CommandExecutor {
 					Player target = Bukkit.getServer().getPlayer(args[1]);
 					try {
 						UUID uuid_target = target.getUniqueId();
-						if (Main.main.money_cfg.contains(uuid_target.toString())) {
+						if (Main.main.money_file_cfg.contains(uuid_target.toString())) {
 							Double amount = Double.valueOf(args[2]);
 							double rounded = Math.round(amount * 100.0D) / 100.0D;
 							Money_methods.addmoney(uuid_target, rounded);
@@ -108,7 +108,7 @@ public class Money_CE implements CommandExecutor {
 					Player target = Bukkit.getServer().getPlayer(args[1]);
 					try {
 						UUID uuid_target = target.getUniqueId();
-						if (Main.main.money_cfg.contains(uuid_target.toString())) {
+						if (Main.main.money_file_cfg.contains(uuid_target.toString())) {
 							Double amount = Double.valueOf(args[2]);
 							double rounded = Math.round(amount * 100.0D) / 100.0D;
 							Money_methods.removemoney(uuid_target, rounded);
@@ -132,8 +132,8 @@ public class Money_CE implements CommandExecutor {
 					Player target = Bukkit.getServer().getPlayer(args[1]);
 					try {
 						UUID uuid_target = target.getUniqueId();
-						if (Main.main.money_cfg.contains(uuid_target.toString())
-								&& Main.main.money_cfg.contains(p.getUniqueId().toString())) {
+						if (Main.main.money_file_cfg.contains(uuid_target.toString())
+								&& Main.main.money_file_cfg.contains(p.getUniqueId().toString())) {
 							Double amount = Double.valueOf(args[2]);
 							double rounded = Math.round(amount * 100.0D) / 100.0D;
 							if (uuid_target == p.getUniqueId()) {

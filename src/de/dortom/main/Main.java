@@ -1,6 +1,7 @@
 package de.dortom.main;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -40,7 +41,7 @@ public class Main extends JavaPlugin {
 
 	// Files
 	public File money_file = new File("plugins/CraftingCity", "money.yml");
-	public FileConfiguration money_cfg = YamlConfiguration.loadConfiguration(money_file);
+	public FileConfiguration money_file_cfg = YamlConfiguration.loadConfiguration(money_file);
 
 	public File money_log_file = new File("plugins/CraftingCity", "money_log.yml");
 	public FileConfiguration money_log_cfg = YamlConfiguration.loadConfiguration(money_log_file);
@@ -66,6 +67,9 @@ public class Main extends JavaPlugin {
 
 		Main.main = this;
 		registerEvents();
+		
+		//filechecks
+		money_file_check();
 
 		// Spielzeit / Payday
 		cd_player_playtime = new player_season();
@@ -76,8 +80,8 @@ public class Main extends JavaPlugin {
 		Main.main.cd_delivery.delivery_items();
 
 		// Scoreboard
-//		cd_scoreboard = new scoreboard_timer();
-//		Main.main.cd_scoreboard.board_timer();
+		// cd_scoreboard = new scoreboard_timer();
+		// Main.main.cd_scoreboard.board_timer();
 
 		this.getCommand("dienst").setExecutor(new Dienst_CE(this));
 		this.getCommand("geben").setExecutor(new geben_CE(this));
@@ -116,5 +120,70 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new garage_Inventory_click_Listener(), this);
 
 	}
+
+	private void money_file_check() {
+		if (new File("plugins/CraftingCity/money.yml").exists()) {
+			System.out.println("[Filecheck] 'money.yml' gefunden!");
+		} else {
+			try {
+				money_file_cfg.save(money_file);
+				System.out.println("[Filecheck] 'money.yml' wurde neu erstellt!");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	// private void player_season_file_check() {
+	// if (new File("plugins/CraftingCity/player_season.yml").exists()) {
+	// System.out.println("[Filecheck] 'player_season.yml' gefunden!");
+	// } else {
+	// System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	// System.out.println("[Filecheck] 'player_season.yml' nicht gefunden!");
+	// System.out.println("[Hinweis] File manuell erstellen oder aus Backup
+	// einspielen!");
+	// System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	// }
+	// }
+	//
+	// private void schienenwerk_locations_file_check() {
+	// if (new File("plugins/CraftingCity/schienenwerk_locations.yml").exists())
+	// {
+	// System.out.println("[Filecheck] 'schienenwerk_locations.yml' gefunden!");
+	// } else {
+	// System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	// System.out.println("[Filecheck] 'schienenwerk_locations.yml' nicht
+	// gefunden!");
+	// System.out.println("[Hinweis] File manuell erstellen oder aus Backup
+	// einspielen!");
+	// System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	// }
+	// }
+	//
+	// private void garage_file_check() {
+	// if (new File("plugins/CraftingCity/garage.yml").exists()) {
+	// System.out.println("[Filecheck] 'garage.yml' gefunden!");
+	// } else {
+	// System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	// System.out.println("[Filecheck] 'garage.yml' nicht gefunden!");
+	// System.out.println("[Hinweis] File manuell erstellen oder aus Backup
+	// einspielen!");
+	// System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	// }
+	// }
+	//
+	// private void messages_file_check() {
+	// File f = new File("plugins/CraftingCity/messages.yml");
+	// if (new File("plugins/CraftingCity/messages.yml").exists()) {
+	// System.out.println("Messages.yml vorhanden!");
+	// } else {
+	// try {
+	// f.createNewFile();
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+	// System.out.println("File wurde erstellt!");
+	// }
+	// }
 
 }
