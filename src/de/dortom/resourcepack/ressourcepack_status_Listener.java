@@ -30,16 +30,6 @@ public class ressourcepack_status_Listener implements Listener {
 				} else if (e.getStatus() == Status.SUCCESSFULLY_LOADED) {
 					p.sendMessage("Das Texturen- u. Soundpaket wurde geladen!");
 					p.setWalkSpeed(0.2F);
-					// Willkommenssound
-					// join_sound1
-					// String songname = "willkommen";
-
-					//
-					// final String soundArg = songname;
-					// final String soundArg1 = "willkommen";
-
-					// p.playSound(p.getLocation(), soundArg, 3.0F, 1F);
-					// p.playSound(p.getLocation(), soundArg1, 3.0F, 1F);
 				}
 			}
 		}, 0);

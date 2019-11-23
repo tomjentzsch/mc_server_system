@@ -67,8 +67,8 @@ public class Main extends JavaPlugin {
 
 		Main.main = this;
 		registerEvents();
-		
-		//filechecks
+
+		// filechecks
 		money_file_check();
 
 		// Spielzeit / Payday
@@ -122,7 +122,13 @@ public class Main extends JavaPlugin {
 	}
 
 	private void money_file_check() {
-		if (new File("plugins/CraftingCity/money.yml").exists()) {
+
+		// ergänzt wegen Kurs zum testen!!!
+
+		File money_file_test = new File("plugins/CraftingCity/money.yml");
+
+		if (money_file_test.exists()) {
+
 			System.out.println("[Filecheck] 'money.yml' gefunden!");
 		} else {
 			try {

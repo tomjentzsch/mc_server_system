@@ -24,7 +24,7 @@ public class Garage_CE implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
 		Player p = (Player) sender;
-
+m
 		// File Zugriff ob verkauft oder frei
 		String Garage_1 = Main.main.garage_cfg.getString("Garage_1" + ".status");
 		// String Garage_2 = Main.main.garage_cfg.getString("Garage_2");
@@ -43,23 +43,21 @@ public class Garage_CE implements CommandExecutor {
 
 		ArrayList<String> verkauft = new ArrayList<>();
 		verkauft.add("Verkauft!");
-		
+
 		ArrayList<String> own_garage = new ArrayList<>();
 		own_garage.add("Um deine Garage zu verkaufen(Linksklick)!");
-		
-		
-		//cast falsch?
+
 		Object uuid = Main.main.garage_cfg.get("Garage_1" + ".uuid");
 
 		try {
-			
+
 			if (Garage_1.equals("verkauft")) {
-				if(uuid.equals(p.getUniqueId().toString())){
+				if (uuid.equals(p.getUniqueId().toString())) {
 					p.sendMessage("Geht!");
 					g1_meta.setLore(own_garage);
 					g1.setItemMeta(g1_meta);
 					inv.setItem(0, g1);
-				}else{
+				} else {
 					g1_meta.setLore(verkauft);
 					g1.setItemMeta(g1_meta);
 					inv.setItem(0, g1);

@@ -97,8 +97,6 @@ public class Money_methods {
 
 	}
 
-	// optional falls nochmal benötigt auslagern und auf public aendern!
-
 	public static String printSimpleDateFormat() {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd - HH:mm:ss ");
 		Date currentTime = new Date();
